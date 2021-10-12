@@ -107,10 +107,149 @@ const result = numbers.map((value, index) => {
 console.log(result);
 //filter
 const numbers2 = [1, 2, 5, 7, 4, 7, 8];
-// filter trả về 1 mạng, có thể rỗng []
-// nếu giá trị sau return là true thì trả về value
+// filter trả về 1 mảng, có thể rỗng []
+// nếu giá trị sau return là true, push value vào mảng mới
 
 const result2 = numbers2.filter((value, index) => {
   return value > 5;
 });
+// lần chạy 1: value  =2, false
 console.log(result2);
+
+// .reduce
+
+const numbers3 = [1, 2, 3, 4];
+// TH1: k có giá trị initialvalue, lc1- acc = arr[0], val= arr[1] giá trị sau return sẽ đc tích trữ vào biến acc
+// --> giá trị sau cùng của acc là 1 giá trị trả về của reduce
+// TH2: có giá trị initialvalue value, lc1 acc = initialvalue, val = arr[0] giá trị sau return sẽ đc tích trữ vào biến acc
+
+const sum = numbers3.reduce((acc, val, index) => {
+  return acc + val;
+});
+console.log(sum);
+
+const users = [
+  {
+    id: 1,
+    balance: 10,
+    salary: 1000,
+    age: 18,
+  },
+  {
+    id: 2,
+    balance: 30,
+    salary: 2000,
+    age: 18,
+  },
+  {
+    id: 3,
+    balance: 40,
+    salary: 3000,
+    age: 18,
+  },
+];
+
+// tổng balance của các users = 80
+
+const totalBalance = users.reduce((acc, val) => {
+  return acc + val.balance;
+}, 0);
+console.log(totalBalance);
+//Nếu k có initialvalue thì acc là 1 object + val.balance(10)
+
+// indexOf - tìm vị trí xuất hiện đầu tiên
+const courses = [1, 3, 4, 1, 100];
+console.log(courses.indexOf(1, 1));
+
+// findIndex nhận vào 1 function
+console.log(
+  courses.findIndex((val) => {
+    return val === 3;
+  })
+);
+
+const person = [
+  { id: 1, age: 18, name: "mary" },
+  {
+    id: 2,
+    age: 19,
+    name: "jenny",
+  },
+];
+// tìm person age = 19
+const idx = person.findIndex((val, idx) => val.age === 19);
+if (idx !== -1) {
+  console.log(person[idx].name);
+} else {
+  console.log("không có nguoi nao");
+}
+// tìm luôn object đó
+const persons = person.find((val, i) => val.age === 18);
+console.log(persons);
+
+// tính tổng salary các user có giá trị age >=18
+const totalSalary = users.reduce((acc, val) => {
+  //   if (val.age === 18) {
+  //     return acc + val.salary;
+  //   }
+  var sala = val.age === 18 ? acc + val.salary : "";
+  return sala;
+}, 0);
+
+console.log("salary", totalSalary);
+
+const people = {
+  name: "ti", // key : value
+  age: 10,
+};
+console.log(people["name"]);
+console.log(people.name);
+
+// kiểm tra key có trong object hay không
+console.log("name" in people);
+
+// lấy mảng các keys
+
+console.log(Object.keys(people));
+console.log(Object.values(people));
+
+// setTimeout
+//đợi 2s rồi mới chạy ra hello
+setTimeout(() => {
+  console.log("hello");
+}, 2000);
+
+// setInterval cứ 2s chạy hello 1 lần
+let time = 1;
+const interval = setInterval(() => {
+  if (time === 10) {
+    clearInterval(interval);
+  } else {
+    console.log("time:", time);
+    time++;
+  }
+}, 2000);
+
+// chuyển từ string sang number
+const a = "5";
+console.log(+a);
+const b = 5;
+console.log(a + "");
+
+// spread operator ...
+
+//reference type
+const add = (a, b, c) => {
+  console.log(a + b + c);
+};
+const arr1 = [1, 2, 3];
+add(...arr1);
+
+// destructuring  cấu trúc lại
+const user = {
+  name: "ti",
+  age: 20,
+};
+const { name, age } = user;
+console.log(name);
+console.log(age);
